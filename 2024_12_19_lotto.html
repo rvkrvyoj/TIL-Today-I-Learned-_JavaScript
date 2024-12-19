@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 번호 생성기</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+        *{
+            font-family: "Gugi", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .container {
+            width: 400px;
+            height : 300px;
+            margin :auto;
+            margin-bottom: 10px;
+
+            background-color: rgb(25, 98, 88);
+            color:white;
+            -webkit-text-stroke: 1px black; 
+            text-align: center;
+        
+            padding-top :50px;
+            border-radius : 8px;
+            background-position : center;
+            background-size:cover;
+        
+        }
+
+        .container>button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+
+            color: rgb(25, 98, 88);
+            background-color: white;
+            border: none;
+            border-radius: 5px;
+
+            margin-bottom: 60px;
+        }
+        .nbContainer {
+            background-color: white;
+            padding: 30px;
+            color: black;
+            text-align: center;
+            border-radius: 8px;
+            width: 200px;
+            margin: auto;
+            font-size: 16px;
+            margin-top: -150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>로또 번호 생성기</h1>
+        <button id="generateButton">행운의 넘버!</button>
+
+    </div>
+    
+    <div class="nbContainer">
+        <div id="numbers"></div>
+    </div>
+
+    <script>
+        document.getElementById('generateButton').addEventListener('click', function () {
+            let numbers = generateLottoNumbers();
+            document.getElementById('numbers').textContent = numbers.join(', ');
+        });
+
+        function generateLottoNumbers() {
+            let lottoNumbers = []; 
+            while (lottoNumbers.length < 6) {    
+                let randomNumber = Math.floor(Math.random() * 45) + 1;
+                if (!lottoNumbers.includes(randomNumber)) {
+                    lottoNumbers.push(randomNumber);
+                };
+            };
+            return lottoNumbers.sort((a, b) => a - b);
+        };
+    </script>
+</html>
